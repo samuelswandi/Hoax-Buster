@@ -22,10 +22,9 @@ const getData = async (Google_URL) => {
     const url2 = data.claims[1].claimReview[0].url;
     const rating3 = data.claims[2].claimReview[0].textualRating;
     const url3 = data.claims[2].claimReview[0].url;
-    
     return { rating1, rating2, rating3, url1, url2, url3 };
   } catch (err) {
-    return { rating: "Kata kunci anda tidak dapat ditemukan", url: "" };
+    return { rating: "Kata kunci anda tidak dapat ditemukan", url: ""};
   }
 };
 
@@ -63,7 +62,20 @@ app.post("/webhook", async function (req, res) {
       messages: [
         {
           type: "text",
-          text: rating1 +" "+ url1 + "\n" + rating2 +" "+ url2 + "\n" + rating3 +" "+ url3 + "\n"
+          text: rating1
+            ? rating1 +
+              " " +
+              url1 +
+              "\n" +
+              rating2 +
+              " " +
+              url2 +
+              "\n" +
+              rating3 +
+              " " +
+              url3 +
+              "\n"
+            : "Kata kunci anda tidak dapat ditemukan.",
         },
       ],
     });
