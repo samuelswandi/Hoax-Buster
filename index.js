@@ -19,7 +19,7 @@ const getData = async (Google_URL) => {
   const response = await fetch(Google_URL);
   const data = await response.json();
   const rating = data.claims[0].claimReview[0].textualRating;
-  const url = data.claims[0].claimsReview[0].url;
+  const url = data.claims[0].claimReview[0].url;
   return { rating, url };
 };
 
@@ -89,5 +89,5 @@ app.post("/webhook", function (req, res) {
 });
 
 app.listen(PORT, () => {
-  console.log(`Example app listening at http://localhost:${PORT}`);
+  console.log(`listening on ${PORT}`);
 });
