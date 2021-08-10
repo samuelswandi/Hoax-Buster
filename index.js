@@ -16,9 +16,14 @@ const getData = async (Google_URL) => {
   try {
     const response = await fetch(Google_URL);
     const data = await response.json();
-    const rating = data.claims[0].claimReview[0].textualRating;
-    const url = data.claims[0].claimReview[0].url;
-    return { rating, url };
+    const rating1 = data.claims[0].claimReview[0].textualRating;
+    const url1 = data.claims[0].claimReview[0].url;
+    const rating2 = data.claims[1].claimReview[0].textualRating;
+    const url2 = data.claims[1].claimReview[0].url;
+    const rating3 = data.claims[2].claimReview[0].textualRating;
+    const url3 = data.claims[2].claimReview[0].url;
+    
+    return { rating1, rating2, rating3, url1, url2, url3 };
   } catch (err) {
     return { rating: "Kata kunci anda tidak dapat ditemukan", url: "" };
   }
@@ -48,9 +53,9 @@ app.post("/webhook", async function (req, res) {
     const URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search?";
     var Google_URL = URL + query;
 
-    let { rating, url } = await getData(Google_URL)
+    let { rating1, rating2, rating3, url1, url2, url3 } = await getData(Google_URL)
 
-    console.log(rating,url)
+    console.log(rating1, rating2, rating3, url1, url2, url3)
 
     // Message data, must be stringified
     const dataString = JSON.stringify({
@@ -58,7 +63,7 @@ app.post("/webhook", async function (req, res) {
       messages: [
         {
           type: "text",
-          text: rating + url
+          text: rating1 +" "+ url1 + "\n" + rating2 +" "+ url2 + "\n" + rating3 +" "+ url3 + "\n"
         },
       ],
     });
