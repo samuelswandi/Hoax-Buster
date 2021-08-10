@@ -10,7 +10,7 @@ app.use(express.urlencoded({
 }))
 
 app.get("/", (req, res) => {
-    res.status(200).send('HALOWWW DHIKAAAAAAAAAAAA')
+  res.sendStatus(200)
 })
 
 app.post("/webhook", function(req, res) {
@@ -66,5 +66,5 @@ app.post("/webhook", function(req, res) {
 })
 
 app.listen(PORT, () => {
-  console.log(`listening at http://localhost:${PORT}`)
+  console.log(`Example app listening at http://localhost:${PORT}`)
 })
