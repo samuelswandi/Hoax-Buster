@@ -13,18 +13,49 @@ app.get("/", (req, res) => {
   res.sendStatus(200)
 })
 
-app.post("/webhook", function(req, res) {
+app.post("/webhook", function (req, res) {
   res.send("HTTP POST request sent to the webhook URL!")
   // If the user sends a message to your bot, send a reply message
-  console.log((req.body.events[0]))
   if (req.body.events[0].type === "message") {
+    var rating = ""
+    var url = ""
+    var textInput = req.body.events[0].message.text
+
+    var sendToGoogle = {
+      query: textInput,
+      key: "AIzaSyAEiE1lYgFP5ZZ_vDba0moCJ_5v8hrvSe8"
+    }
+
+    var esc = encodeURIComponent;
+    var query = Object.keys(sendToGoogle)
+      .map(k => esc(k) + '=' + esc(sendToGoogle[k]))
+      .join('&');
+
+    const URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search?"
+    var Google_URL = URL + query
+
+    https.get(Google_URL, (resp) => {
+      var data = '';
+      resp.on('data', (chunk) => {
+        data += chunk;
+      });
+    
+      resp.on('end', () => {
+          rating = JSON.parse(data).claims[0].claimReview[0].textualRating
+          url = JSON.parse(data).claims[0].claimReview[0].url
+      });
+    
+    }).on("error", (err) => {
+      console.log("Error: " + err.message);
+    });
+
     // Message data, must be stringified
     const dataString = JSON.stringify({
       replyToken: req.body.events[0].replyToken,
       messages: [
         {
           "type": "text",
-          "text": "Iya, Hitler meninggal di Garut"
+          "text": rating + url
         }
       ]
     })
