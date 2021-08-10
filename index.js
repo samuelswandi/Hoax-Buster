@@ -66,7 +66,7 @@ app.post("/webhook", function (req, res) {
       messages: [
         {
           type: "text",
-          text: "HALOOW"
+          text: rating + url
         },
       ],
     });
