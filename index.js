@@ -20,6 +20,7 @@ const getData = async (Google_URL) => {
   try {
     const response = await fetch(Google_URL);
     const data = await response.json();
+    console.log(data)
     const rating = data.claims[0].claimReview[0].textualRating;
     const url = data.claims[0].claimsReview[0].url;
     return { rating, url };
