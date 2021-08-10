@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 });
 
 
-app.post("/webhook", function (req, res) {
+app.post("/webhook", async function (req, res) {
   res.send("HTTP POST request sent to the webhook URL!");
   // If the user sends a message to your bot, send a reply message
   if (req.body.events[0].type === "message") {
@@ -50,14 +50,14 @@ app.post("/webhook", function (req, res) {
     const URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search?";
     var Google_URL = URL + query;
 
-    let rating;
-    let url;
-    getData(Google_URL).then((data) => {
-      console.log("MASUK METHOD GET")
-      console.log(data)
-      rating = data.rating;
-      url = data.url;
-    })
+    // let rating;
+    // let url;
+    let { rating, url } = await getData(Google_URL)
+    // await getData(Google_URL).then((data) => {
+    //   console.log("MASUK METHOD GET")
+    //   rating = data.rating;
+    //   url = data.url;
+    // })
     console.log(rating,url)
 
     // Message data, must be stringified
