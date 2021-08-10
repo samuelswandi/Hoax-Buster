@@ -23,6 +23,7 @@ const getData = async (Google_URL) => {
     console.log(data)
     const rating = data.claims[0].claimReview[0].textualRating;
     const url = data.claims[0].claimsReview[0].url;
+    console.log(rating,url)
     return { rating, url };
   } catch (err) {
     return { rating: "Error", url: "Error" };
@@ -51,7 +52,7 @@ app.post("/webhook", function (req, res) {
 
     let { rating, url } = getData(Google_URL);
 
-    console.log(rating,url)
+    console.log('MASUK SINI')
 
     // Message data, must be stringified
     const dataString = JSON.stringify({
