@@ -23,7 +23,7 @@ app.post("/webhook", function(req, res) {
       messages: [
         {
           "type": "text",
-          "text": "Hitler meninggal di Garut"
+          "text": "Iya, Hitler meninggal di Garut"
         }
       ]
     })
