@@ -53,6 +53,8 @@ app.post("/webhook", function (req, res) {
     let rating;
     let url;
     getData(Google_URL).then((data) => {
+      console.log("MASUK METHOD GET")
+      console.log(data)
       rating = data.rating;
       url = data.url;
     })
