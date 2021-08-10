@@ -24,7 +24,7 @@ const getData = async (Google_URL) => {
     console.log(data)
     console.log(typeof(data))
     const rating = data.claims[0].claimReview[0].textualRating;
-    const url = data.claims[0].claimsReview[0].url;
+    const url = data.claims[0].claimReview[0].url;
     return { rating, url };
   } catch (err) {
     console.log(err)
