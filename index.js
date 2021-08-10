@@ -20,10 +20,9 @@ const getData = async (Google_URL) => {
   try {
     const response = await fetch(Google_URL);
     const data = await response.json();
-    console.log(data)
     const rating = data.claims[0].claimReview[0].textualRating;
     const url = data.claims[0].claimsReview[0].url;
-    console.log(rating,url)
+    console.log('MASUK GET DATA')
     return { rating, url };
   } catch (err) {
     return { rating: "Error", url: "Error" };
@@ -34,7 +33,6 @@ app.post("/webhook", function (req, res) {
   res.send("HTTP POST request sent to the webhook URL!");
   // If the user sends a message to your bot, send a reply message
   if (req.body.events[0].type === "message") {
-    console.log(req.body.events)
     var textInput = req.body.events[0].message.text;
 
     var sendToGoogle = {
@@ -53,6 +51,8 @@ app.post("/webhook", function (req, res) {
     let { rating, url } = getData(Google_URL);
 
     console.log('MASUK SINI')
+    console.log(rating,url)
+
 
     // Message data, must be stringified
     const dataString = JSON.stringify({
