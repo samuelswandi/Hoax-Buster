@@ -20,9 +20,7 @@ const getData = async (Google_URL) => {
     const url = data.claims[0].claimReview[0].url;
     return { rating, url };
   } catch (err) {
-    console.log(err)
-    console.log("MASUK ERROR")
-    return { rating: "Error", url: "Error" };
+    return { rating: "Kata kunci anda tidak dapat ditemukan", url: "" };
   }
 };
 
@@ -50,14 +48,8 @@ app.post("/webhook", async function (req, res) {
     const URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search?";
     var Google_URL = URL + query;
 
-    // let rating;
-    // let url;
     let { rating, url } = await getData(Google_URL)
-    // await getData(Google_URL).then((data) => {
-    //   console.log("MASUK METHOD GET")
-    //   rating = data.rating;
-    //   url = data.url;
-    // })
+
     console.log(rating,url)
 
     // Message data, must be stringified
