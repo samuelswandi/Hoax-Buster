@@ -21,10 +21,9 @@ const getData = async (Google_URL) => {
   try {
     const response = await fetch(Google_URL);
     const data = await response.json();
-    console.log(data)
-    console.log(typeof(data))
     const rating = data.claims[0].claimReview[0].textualRating;
     const url = data.claims[0].claimReview[0].url;
+    console.log(rating,url)
     return { rating, url };
   } catch (err) {
     console.log(err)
