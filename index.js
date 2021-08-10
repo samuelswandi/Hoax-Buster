@@ -16,11 +16,15 @@ app.get("/", (req, res) => {
 });
 
 const getData = async (Google_URL) => {
-  const response = await fetch(Google_URL);
-  const data = await response.json();
-  const rating = data.claims[0].claimReview[0].textualRating;
-  const url = data.claims[0].claimReview[0].url;
-  return { rating, url };
+  try {
+    const response = await fetch(Google_URL);
+    const data = await response.json();
+    const rating = data.claims[0].claimReview[0].textualRating;
+    const url = data.claims[0].claimsReview[0].url;
+    return { rating, url };
+  } catch (err) {
+    return { rating: "Error", url: "Error" };
+  }
 };
 
 app.post("/webhook", function (req, res) {
@@ -44,13 +48,15 @@ app.post("/webhook", function (req, res) {
 
     let { rating, url } = getData(Google_URL);
 
+    console.log(rating,url)
+
     // Message data, must be stringified
     const dataString = JSON.stringify({
       replyToken: req.body.events[0].replyToken,
       messages: [
         {
           type: "text",
-          text: rating + url,
+          text: "HALOOW"
         },
       ],
     });
