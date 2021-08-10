@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 const getData = async (Google_URL) => {
-  console(Google_URL)
+  console.log(Google_URL)
   try {
     const response = await fetch(Google_URL);
     const data = await response.json();
