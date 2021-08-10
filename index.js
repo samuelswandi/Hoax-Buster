@@ -26,6 +26,7 @@ const getData = async (Google_URL) => {
     console.log('MASUK GET DATA')
     return { rating, url };
   } catch (err) {
+    console.log("MASUK ERROR")
     return { rating: "Error", url: "Error" };
   }
 };
