@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const TOKEN = process.env.LINE_ACCESS_TOKEN;
+const fetch = require("node-fetch");
 
 app.use(express.json());
 app.use(
@@ -31,7 +32,7 @@ app.post("/webhook", function (req, res) {
   res.send("HTTP POST request sent to the webhook URL!");
   // If the user sends a message to your bot, send a reply message
   if (req.body.events[0].type === "message") {
-    console.log( req.body.events)
+    console.log(req.body.events)
     var textInput = req.body.events[0].message.text;
 
     var sendToGoogle = {
