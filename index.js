@@ -12,6 +12,20 @@ app.use(
   })
 );
 
+const getData = async (Google_URL) => {
+  try {
+    const response = await fetch(Google_URL);
+    const data = await response.json();
+    const rating = data.claims[0].claimReview[0].textualRating;
+    const url = data.claims[0].claimReview[0].url;
+    return { rating, url };
+  } catch (err) {
+    console.log(err)
+    console.log("MASUK ERROR")
+    return { rating: "Error", url: "Error" };
+  }
+};
+
 app.get("/", (req, res) => {
   res.sendStatus(200);
 });
@@ -36,24 +50,13 @@ app.post("/webhook", function (req, res) {
     const URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search?";
     var Google_URL = URL + query;
 
-    var rating = "";
-    var url = "";
-
-    const getData = async (Google_URL) => {
-      try {
-        const response = await fetch(Google_URL);
-        const data = await response.json();
-        rating = data.claims[0].claimReview[0].textualRating;
-        url = data.claims[0].claimReview[0].url;
-        return { rating, url };
-      } catch (err) {
-        console.log(err)
-        console.log("MASUK ERROR")
-        return { rating: "Error", url: "Error" };
-      }
-    };
-    
-    let { rating, url } = getData(Google_URL);
+    let rating;
+    let url;
+    getData(Google_URL).then((data) => {
+      rating = data.rating;
+      url = data.url;
+    })
+    console.log(rating,url)
 
     // Message data, must be stringified
     const dataString = JSON.stringify({
