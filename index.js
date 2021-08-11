@@ -107,8 +107,8 @@ contoh: "/cekhoax covid is human-made"`
         if (err) {
             reply = "NIM yang anda masukkan salah"
         } else {
-            console.log(data[index])
-            reply = data[index].json();
+            console.log(typeof (data[index]))
+            reply = data[index]
         }
       });
 
