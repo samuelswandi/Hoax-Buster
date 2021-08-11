@@ -64,7 +64,7 @@ Untuk mengetahui cara penggunaan bot ini, silakan ketik "/help" `
 
       let { rating, url, claimant, text } = await getData(Google_URL)
       if (rating === "") {
-        reply = "Maaf, kata kunci yang anda masukkan salah"
+        reply = "Maaf, kata kunci yang anda masukkan tidak dapat ditemukan"
       } else {
         reply = `|| Hasil Pengecekan ||
 Claim dari : ${claimant}
