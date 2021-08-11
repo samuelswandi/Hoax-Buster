@@ -98,6 +98,7 @@ contoh: "/cekhoax covid is human-made"`
 
     } else if (textInput.slice(0, 11) === '/initstatus') {
 
+      console.log("MASUK INIT STATUS")
       var nim = textInput.splice(12)
       
       await dbInit.find((err, data) => {
@@ -106,6 +107,7 @@ contoh: "/cekhoax covid is human-made"`
         if (err) {
             reply = "NIM yang anda masukkan salah"
         } else {
+            console.log(data[index])
             reply = (data[index]);
         }
       });
