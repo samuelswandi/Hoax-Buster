@@ -4,6 +4,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const TOKEN = process.env.LINE_ACCESS_TOKEN;
 const fetch = require("node-fetch");
+const mongoose = require('mongoose');
+const { MongoClient } = require('mongodb');
+const uri = "mongodb+srv://admin:admin@cluster0.obsor.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
 
 app.use(express.json());
 app.use(
@@ -11,6 +15,17 @@ app.use(
     extended: true,
   })
 );
+
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+mongoose.connection.once('open', () => { console.log('MongoDB Connected'); });
+mongoose.connection.on('error', (err) => { console.log('MongoDB connection error: ', err); }); 
+
 
 const getData = async (Google_URL) => {
   try {
@@ -46,7 +61,13 @@ Saat ini, mohon untuk mencari fakta yang berhubungn dengan covid agar hasil yang
 Untuk mengetahui cara penggunaan bot ini, silakan ketik "/help" `
 
     } else if (textInput === "/help") {
-      reply = `/help`
+      reply = `HELP
+>>"/initstatus"
+Untuk mengetahui data mahasiswa Init, status covid dan status vaksin
+      
+Untuk memeriksa fakta suatu informasi, silakan langsung ketik informasi yang ingin diperiksa menggunakan bahasa inggris
+      
+contoh: "covid is human-made"`
     } else {
 
       var sendToGoogle = {
