@@ -105,10 +105,10 @@ contoh: "/cekhoax covid is human-made"`
         var index = data.findIndex( (element) => element.Nim == nim)
         if (index == -1) { return null }
         if (err) {
-            return reply = "NIM yang anda masukkan salah"
+            reply = "NIM yang anda masukkan salah"
         } else {
             console.log(data[index])
-            return reply = data[index];
+            reply = data[index];
         }
       });
 
