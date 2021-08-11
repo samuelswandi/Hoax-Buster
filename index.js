@@ -18,7 +18,9 @@ const getData = async (Google_URL) => {
     const data = await response.json();
     const rating = data.claims[0].claimReview[0].textualRating;
     const url = data.claims[0].claimReview[0].url;
-    return { rating, url };
+    const claimant = data.claims[0].claimant;
+    const text = data.claims[0].text
+    return { rating, url, claimant, text };
   } catch (err) {
     return { rating: "Kata kunci anda tidak dapat ditemukan", url: "" };
   }
@@ -43,7 +45,7 @@ Saat ini, mohon untuk mencari fakta yang berhubungn dengan covid agar hasil yang
 
 Untuk mengetahui cara penggunaan bot ini, silakan ketik "/help" `
 
-    } else if (textInput === "/help"){
+    } else if (textInput === "/help") {
       reply = `/help`
     } else {
 
@@ -60,8 +62,12 @@ Untuk mengetahui cara penggunaan bot ini, silakan ketik "/help" `
       const URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search?";
       var Google_URL = URL + query;
 
-      let { rating, url } = await getData(Google_URL)
-      reply = rating + " " +url
+      let { rating, url, claimant, text } = await getData(Google_URL)
+      reply = `|| Hasil Pengecekan ||
+Claim dari : ${claimant}
+Topik : ${text}
+Keputusan : ${rating}
+Link : ${url}`
     }
 
     // Message data, must be stringified
