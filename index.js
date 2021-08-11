@@ -108,12 +108,12 @@ contoh: "/cekhoax covid is human-made"`
         } else {
 
           reply = `INIT STATUS
-          Nama  : ${data[index].Nama}
-          Nim   : ${data[index].Nim}
-          Domisili  : ${data[index.Domisili]}
-          Status Covid  : ${data[index].StatusCovid}
-          Status Vaksin : ${data[index].StatusVaksin}`
-          
+Nama  : ${data[index].Nama}
+Nim   : ${data[index].Nim}
+Domisili  : ${data[index.Domisili]}
+Status Covid  : ${data[index].StatusCovid}
+Status Vaksin : ${data[index].StatusVaksin}`
+
             console.log(data[index].Nama)
             console.log(data[index].Nim)
             console.log(data[index].Domisili)
