@@ -53,7 +53,7 @@ app.post("/webhook", async function (req, res) {
     var textInput = req.body.events[0].message.text;
     var reply = ""
 
-    if (textInput.toLowerCase() === "hi" || textInput.toLowerCase() === "halo") {
+    if (textInput.toLowerCase() === "hi" || textInput.toLowerCase() === "halo" || textInput.toLowerCase() === "hai") {
       reply = `Halo, Hoax Buster adalah bot yang siap memeriksa kebenaran dari informasi yang ingin anda periksa.
 
 Saat ini, mohon untuk mencari fakta yang berhubungn dengan covid agar hasil yang didapatkan lebih relevan
