@@ -51,37 +51,10 @@ app.post("/webhook", async function (req, res) {
     var textInput = req.body.events[0].message.text;
     var reply = ""
 
-    if (textInput.toLowerCase() === "hi" || textInput.toLowerCase() === "halo" || textInput.toLowerCase() === "hai") {
-      reply = `Halo, Hoax Buster adalah bot yang siap memeriksa kebenaran dari informasi yang ingin anda periksa.
-
-Saat ini, mohon untuk mencari fakta yang berhubungn dengan covid agar hasil yang didapatkan lebih relevan
-
-Untuk mengetahui cara penggunaan bot ini, silakan ketik "/help" `
-
-    } else if (textInput === "/help") {
-      reply = `HELP
->>"/initstatus"
-Untuk mengetahui data mahasiswa Init, status covid dan status vaksin
-      
-Untuk memeriksa fakta suatu informasi, silakan langsung ketik informasi yang ingin diperiksa menggunakan bahasa inggris
-      
-contoh: "covid is human-made"`
-    } else if (textInput === "/grace") {
-
-      reply = "I LOVE U GRACEEEEE -sem" // mmf ya gais bucin :D
-
-    } else if (textInput === '/eagan') {
-
-      reply = 'bernigen doppleganger + orang tolol' // maaf ya gais
-
-    } else if (textInput === '/initstatus') {
-
-      reply = 'Maaf, fitur ini belum selesai :D' 
-
-    } else {
+    if (textInput.slice(0, 8) === "/cekhoax") {
 
       var sendToGoogle = {
-        query: textInput,
+        query: textInput.slice(9),
         key: "AIzaSyAEiE1lYgFP5ZZ_vDba0moCJ_5v8hrvSe8",
       };
 
@@ -103,6 +76,37 @@ Topik : ${text}
 Keputusan : ${rating}
 Link : ${url}`
       }
+
+    } else if (textInput === "/help") {
+      reply = `HELP
+>>"/initstatus"
+Untuk mengetahui data mahasiswa Init, status covid dan status vaksin
+      
+Untuk memeriksa fakta suatu informasi, silakan langsung ketik "/cekhoax" serta informasi yang ingin diperiksa menggunakan bahasa inggris
+      
+contoh: "/cekhoax covid is human-made"`
+    } else if (textInput === "/grace") {
+
+      reply = "I LOVE U GRACEEEEE -sem" // mmf ya gais bucin :D
+
+    } else if (textInput === '/eagan') {
+
+      reply = 'bernigen doppleganger + orang tolol' // maaf ya gais
+
+    } else if (textInput === '/initstatus') {
+
+      reply = 'Maaf, fitur ini belum selesai :D'
+
+    } else if (textInput[0] === "/") {
+
+      reply = "Command yang anda masukkan salah, silahkan ketik '/help' untuk mengetahui command yang tersedia"
+
+    } else {
+      reply = `Halo, Hoax Buster adalah bot yang siap memeriksa kebenaran dari informasi yang ingin anda periksa.
+
+Saat ini, mohon untuk mencari fakta yang berhubungn dengan covid agar hasil yang didapatkan lebih relevan
+
+Untuk mengetahui cara penggunaan bot ini, silakan ketik "/help" `
     }
 
     // Message data, must be stringified
