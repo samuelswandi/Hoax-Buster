@@ -18,13 +18,9 @@ const getData = async (Google_URL) => {
     const data = await response.json();
     const rating = data.claims[0].claimReview[0].textualRating;
     const url = data.claims[0].claimReview[0].url;
-    // const rating2 = data.claims[1].claimReview[0].textualRating;
-    // const url2 = data.claims[1].claimReview[0].url;
-    // const rating3 = data.claims[2].claimReview[0].textualRating;
-    // const url3 = data.claims[2].claimReview[0].url;
-    return { rating,url };
+    return { rating, url };
   } catch (err) {
-    return { rating: "Kata kunci anda tidak dapat ditemukan", url: ""};
+    return { rating: "Kata kunci anda tidak dapat ditemukan", url: "" };
   }
 };
 
@@ -39,23 +35,29 @@ app.post("/webhook", async function (req, res) {
   if (req.body.events[0].type === "message") {
     var textInput = req.body.events[0].message.text;
 
-    var sendToGoogle = {
-      query: textInput,
-      key: "AIzaSyAEiE1lYgFP5ZZ_vDba0moCJ_5v8hrvSe8",
-    };
+    if (textInput.toLowerCase() === "hi" || textInput.toLowerCase() === "halo") {
 
-    var esc = encodeURIComponent;
-    var query = Object.keys(sendToGoogle)
-      .map((k) => esc(k) + "=" + esc(sendToGoogle[k]))
-      .join("&");
+      let rating = "Halo, Hoax Buster adalah bot yang siap memeriksa kebenaran dari informasi yang ingin anda periksa. \n Untuk mengetahui cara penggunaan bot ini, silakan ketik " / help""
+      let url = ""
 
-    const URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search?";
-    var Google_URL = URL + query;
+    } else {
 
-    // let { rating1, rating2, rating3, url1, url2, url3 } = await getData(Google_URL)
-    let { rating, url } = await getData(Google_URL)
+      var sendToGoogle = {
+        query: textInput,
+        key: "AIzaSyAEiE1lYgFP5ZZ_vDba0moCJ_5v8hrvSe8",
+      };
 
-    // console.log(rating1, rating2, rating3, url1, url2, url3)
+      var esc = encodeURIComponent;
+      var query = Object.keys(sendToGoogle)
+        .map((k) => esc(k) + "=" + esc(sendToGoogle[k]))
+        .join("&");
+
+      const URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search?";
+      var Google_URL = URL + query;
+
+      let { rating, url } = await getData(Google_URL)
+
+    }
 
     // Message data, must be stringified
     const dataString = JSON.stringify({
@@ -64,19 +66,6 @@ app.post("/webhook", async function (req, res) {
         {
           type: "text",
           text: rating + " " + url
-            // ? rating1 +
-            //   " " +
-            //   url1 +
-            //   "\n" +
-            //   rating2 +
-            //   " " +
-            //   url2 +
-            //   "\n" +
-            //   rating3 +
-            //   " " +
-            //   url3 +
-            //   "\n"
-            // : "Kata kunci anda tidak dapat ditemukan.",
         },
       ],
     });

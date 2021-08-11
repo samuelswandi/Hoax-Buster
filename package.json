@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.17.1",
+    "mongoose": "^5.13.6",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {},
