@@ -106,15 +106,18 @@ contoh: "/cekhoax covid is human-made"`
         if (index == -1) {
             reply = "NIM yang anda masukkan salah"
         } else {
-            console.log(data[index])
-            // data[index].map( ({id, Nama, Nim, Domisili, StatusCovid, StatusVaksin}) => {
-            //   reply = `Init Status
-            //   Nama  : ${Nama}
-            //   Nim   : ${Nim}
-            //   Domisili  : ${Domisili}
-            //   Status Covid  : ${StatusCovid}
-            //   Status Vaksi  : ${StatusVaksin}`
-            // })
+            console.log(data[index].Nama)
+            console.log(data[index].Nim)
+            console.log(data[index].Domisili)
+            console.log(data[index].StatusCovid)
+            console.log(data[index].StatusVaksin)
+
+
+            console.log(typeof data[index].Nama)
+            console.log(typeof data[index].Nim)
+            console.log(typeof data[index].Domisili)
+            console.log(typeof data[index].StatusCovid)
+            console.log(typeof data[index].StatusVaksin)
         }
       });
 
