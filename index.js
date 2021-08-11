@@ -69,8 +69,8 @@ Untuk memeriksa fakta suatu informasi, silakan langsung ketik informasi yang ing
       
 contoh: "covid is human-made"`
     } else if (textInput === "/grace") {
-      
-      reply == "I LOVE U GRACEEEEE" // mmf ya gais bucin :D
+
+      reply = "I LOVE U GRACEEEEE -sem" // mmf ya gais bucin :D
 
     } else {
 
