@@ -24,7 +24,7 @@ client.connect(err => {
 });
 
 mongoose.connection.once('open', () => { console.log('MongoDB Connected'); });
-mongoose.connection.on('error', (err) => { console.log('MongoDB connection error: ', err); }); 
+mongoose.connection.on('error', (err) => { console.log('MongoDB connection error: ', err); });
 
 
 const getData = async (Google_URL) => {
@@ -68,6 +68,10 @@ Untuk mengetahui data mahasiswa Init, status covid dan status vaksin
 Untuk memeriksa fakta suatu informasi, silakan langsung ketik informasi yang ingin diperiksa menggunakan bahasa inggris
       
 contoh: "covid is human-made"`
+    } else if (textInput === "/grace") {
+      
+      reply == "I LOVE U GRACEEEEE" // mmf ya gais bucin :D
+
     } else {
 
       var sendToGoogle = {
