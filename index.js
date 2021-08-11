@@ -110,7 +110,7 @@ contoh: "/cekhoax covid is human-made"`
           reply = `INIT STATUS
 Nama  : ${data[index].Nama}
 Nim   : ${data[index].Nim}
-Domisili  : ${data[index.Domisili]}
+Domisili  : ${data[index].Domisili}
 Status Covid  : ${data[index].StatusCovid}
 Status Vaksin : ${data[index].StatusVaksin}`
 
