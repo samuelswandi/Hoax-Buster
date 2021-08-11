@@ -37,7 +37,7 @@ app.post("/webhook", async function (req, res) {
 
     if (textInput.toLowerCase() === "hi" || textInput.toLowerCase() === "halo") {
 
-      let rating = "Halo, Hoax Buster adalah bot yang siap memeriksa kebenaran dari informasi yang ingin anda periksa. \n Untuk mengetahui cara penggunaan bot ini, silakan ketik " / help""
+      let rating = "Halo, Hoax Buster adalah bot yang siap memeriksa kebenaran dari informasi yang ingin anda periksa. \n Untuk mengetahui cara penggunaan bot ini, silakan ketik /help"
       let url = ""
 
     } else {
