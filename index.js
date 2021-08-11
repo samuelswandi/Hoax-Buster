@@ -37,13 +37,11 @@ app.post("/webhook", async function (req, res) {
     var reply = ""
 
     if (textInput.toLowerCase() === "hi" || textInput.toLowerCase() === "halo") {
-      reply = `
-Halo, Hoax Buster adalah bot yang siap memeriksa kebenaran dari informasi yang ingin anda periksa.
+      reply = `Halo, Hoax Buster adalah bot yang siap memeriksa kebenaran dari informasi yang ingin anda periksa.
 
 Saat ini, mohon untuk mencari fakta yang berhubungn dengan covid agar hasil yang didapatkan lebih relevan
 
-Untuk mengetahui cara penggunaan bot ini, silakan ketik "/help"
-      `
+Untuk mengetahui cara penggunaan bot ini, silakan ketik "/help" `
 
     } else if (textInput === "/help"){
       reply = `/help`
