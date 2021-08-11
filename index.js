@@ -96,9 +96,9 @@ contoh: "/cekhoax covid is human-made"`
 
       reply = 'bernigen doppleganger + orang tolol' // maaf ya gais
 
-    } else if (textInput.slice(0, 8) === '/initstatus') {
+    } else if (textInput.slice(0, 11) === '/initstatus') {
 
-      var nim = textInput.splice(9)
+      var nim = textInput.splice(12)
       
       await dbInit.find((err, data) => {
         var index = data.findIndex( (element) => element.Nim == nim)
