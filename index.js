@@ -22,7 +22,7 @@ const getData = async (Google_URL) => {
     const text = data.claims[0].text
     return { rating, url, claimant, text };
   } catch (err) {
-    return { rating: "Kata kunci anda tidak dapat ditemukan", url: "" };
+    return { rating: "", url: "", claimant: "", text: "" };
   }
 };
 
@@ -63,11 +63,15 @@ Untuk mengetahui cara penggunaan bot ini, silakan ketik "/help" `
       var Google_URL = URL + query;
 
       let { rating, url, claimant, text } = await getData(Google_URL)
-      reply = `|| Hasil Pengecekan ||
+      if (rating === "") {
+        reply = "Maaf, kata kunci yang anda masukkan salah"
+      } else {
+        reply = `|| Hasil Pengecekan ||
 Claim dari : ${claimant}
 Topik : ${text}
 Keputusan : ${rating}
 Link : ${url}`
+      }
     }
 
     // Message data, must be stringified
