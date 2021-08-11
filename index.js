@@ -102,9 +102,8 @@ contoh: "/cekhoax covid is human-made"`
       var nim = textInput.slice(12)
       
       await dbInit.find((err, data) => {
-        var index = data.findIndex( (element) => element.Nim == nim)
-        if (index == -1) { return null }
-        if (err) {
+        var index = data.findIndex( (element) => element.Nim == nim)  
+        if (index == -1) {
             reply = "NIM yang anda masukkan salah"
         } else {
             console.log(typeof (data[index]))
