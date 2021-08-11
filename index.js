@@ -99,7 +99,7 @@ contoh: "/cekhoax covid is human-made"`
     } else if (textInput.slice(0, 11) === '/initstatus') {
 
       console.log("MASUK INIT STATUS")
-      var nim = textInput.splice(12)
+      var nim = textInput.slice(12)
       
       dbInit.find((err, data) => {
         var index = data.findIndex( (element) => element.Nim == nim)
