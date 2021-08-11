@@ -15,7 +15,7 @@ app.use(
   })
 );
 
-mongoose.connect(process.env.connection_url, {
+mongoose.connect(connection_url, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true
@@ -69,6 +69,14 @@ contoh: "covid is human-made"`
     } else if (textInput === "/grace") {
 
       reply = "I LOVE U GRACEEEEE -sem" // mmf ya gais bucin :D
+
+    } else if (textInput === '/eagan') {
+
+      reply = 'bernigen doppleganger + orang tolol' // maaf ya gais
+
+    } else if (textInput === '/initstatus') {
+
+      reply = 'Maaf, fitur ini belum selesai :D' 
 
     } else {
 
