@@ -101,14 +101,14 @@ contoh: "/cekhoax covid is human-made"`
       console.log("MASUK INIT STATUS")
       var nim = textInput.slice(12)
       
-      dbInit.find((err, data) => {
+      await dbInit.find((err, data) => {
         var index = data.findIndex( (element) => element.Nim == nim)
         if (index == -1) { return null }
         if (err) {
-            reply = "NIM yang anda masukkan salah"
+            return reply = "NIM yang anda masukkan salah"
         } else {
             console.log(data[index])
-            reply = (data[index]);
+            return reply = data[index];
         }
       });
 
