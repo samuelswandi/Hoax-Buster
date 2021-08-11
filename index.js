@@ -34,11 +34,13 @@ app.post("/webhook", async function (req, res) {
   // If the user sends a message to your bot, send a reply message
   if (req.body.events[0].type === "message") {
     var textInput = req.body.events[0].message.text;
+    var reply = ""
 
     if (textInput.toLowerCase() === "hi" || textInput.toLowerCase() === "halo") {
 
       let rating = "Halo, Hoax Buster adalah bot yang siap memeriksa kebenaran dari informasi yang ingin anda periksa. \n Untuk mengetahui cara penggunaan bot ini, silakan ketik /help"
       let url = ""
+      reply = rating + url
 
     } else {
 
@@ -56,7 +58,7 @@ app.post("/webhook", async function (req, res) {
       var Google_URL = URL + query;
 
       let { rating, url } = await getData(Google_URL)
-
+      reply = rating + " " +url
     }
 
     // Message data, must be stringified
@@ -65,7 +67,7 @@ app.post("/webhook", async function (req, res) {
       messages: [
         {
           type: "text",
-          text: rating + " " + url
+          text: reply
         },
       ],
     });
