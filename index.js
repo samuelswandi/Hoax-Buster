@@ -6,6 +6,7 @@ const TOKEN = process.env.LINE_ACCESS_TOKEN;
 const fetch = require("node-fetch");
 const mongoose = require('mongoose');
 const connection_url = "mongodb+srv://admin:admin@cluster0.obsor.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const dbInit = require('./dbModel.js')
 
 
 app.use(express.json());
@@ -79,9 +80,11 @@ Link : ${url}`
 
     } else if (textInput === "/help") {
       reply = `HELP
->>"/initstatus"
+"/initstatus [NIM]"
 Untuk mengetahui data mahasiswa Init, status covid dan status vaksin
-      
+contoh: "/initstatus 13520134"
+
+"/cekhoax [Informasi]"
 Untuk memeriksa fakta suatu informasi, silakan langsung ketik "/cekhoax" serta informasi yang ingin diperiksa menggunakan bahasa inggris
       
 contoh: "/cekhoax covid is human-made"`
@@ -93,9 +96,19 @@ contoh: "/cekhoax covid is human-made"`
 
       reply = 'bernigen doppleganger + orang tolol' // maaf ya gais
 
-    } else if (textInput === '/initstatus') {
+    } else if (textInput.slice(0, 8) === '/initstatus') {
 
-      reply = 'Maaf, fitur ini belum selesai :D'
+      var nim = textInput.splice(9)
+      
+      await dbInit.find((err, data) => {
+        var index = data.findIndex( (element) => element.Nim == nim)
+        if (index == -1) { return null }
+        if (err) {
+            reply = "NIM yang anda masukkan salah"
+        } else {
+            reply = (data[index]);
+        }
+      });
 
     } else if (textInput[0] === "/") {
 
