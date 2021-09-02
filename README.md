@@ -1,15 +1,5 @@
 # Hoax Buster
-
-## Kelompok 24 - AnDhika
-* Andhika Arta Ariyanto (16520019),
-* Raka Wirabuana Ninagan (16520048),
-* Siti Adira Ramadhani (16520076),
-* Jeremy Simbolon (16520086),
-* Theodore Justin Lionar (16520099),
-* Ahmad Romy Zahran (16520159),
-* Taufan Fajarama Putrawansyah R. (16520175),
-* Nadia Mareta Putri Leiden (16520393),
-* Samuel Christopher Swandi (16520414),
+Hoax Buster adalah bot yang siap memeriksa kebenaran dari informasi yang ingin anda periksa.
 
 ## Cara Penggunaan Bot
 - Add bot Hoax Buster dengan `id line: @208iwxeb`
